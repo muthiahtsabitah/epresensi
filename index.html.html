@@ -1,0 +1,248 @@
+import React, { useState, useEffect } from 'react';
+import { ShoppingBag, Heart, Leaf, TrendingUp, Instagram, Facebook, MessageCircle, Package, Users, Sparkles } from 'lucide-react';
+
+export default function PrelovedStoryWebsite() {
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const products = [
+    { name: 'Vintage Denim Jacket', price: 'Rp 85.000', image: '🧥', category: 'Fashion' },
+    { name: 'Classic Novel Collection', price: 'Rp 25.000', image: '📚', category: 'Books' },
+    { name: 'Leather Handbag', price: 'Rp 120.000', image: '👜', category: 'Accessories' },
+    { name: 'Casual T-Shirt Bundle', price: 'Rp 45.000', image: '👕', category: 'Fashion' },
+    { name: 'Sunglasses Retro', price: 'Rp 35.000', image: '🕶️', category: 'Accessories' },
+    { name: 'Study Books', price: 'Rp 30.000', image: '📖', category: 'Books' }
+  ];
+
+  const features = [
+    { icon: <Leaf className="w-8 h-8" />, title: 'Ramah Lingkungan', desc: 'Kurangi limbah fashion dengan belanja preloved' },
+    { icon: <TrendingUp className="w-8 h-8" />, title: 'Harga Terjangkau', desc: 'Produk berkualitas dengan harga mahasiswa-friendly' },
+    { icon: <Sparkles className="w-8 h-8" />, title: 'Barang Unik', desc: 'Temukan item vintage dan limited edition' },
+    { icon: <Users className="w-8 h-8" />, title: 'Komunitas', desc: 'Bergabung dengan komunitas sustainable fashion' }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-teal-50">
+      {/* Navbar */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <ShoppingBag className="w-8 h-8 text-rose-500" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-rose-500 to-teal-500 bg-clip-text text-transparent">
+                PrelovedStory.id
+              </span>
+            </div>
+            <div className="hidden md:flex gap-8">
+              <a href="#home" className="text-gray-700 hover:text-rose-500 transition-colors">Home</a>
+              <a href="#about" className="text-gray-700 hover:text-rose-500 transition-colors">About</a>
+              <a href="#products" className="text-gray-700 hover:text-rose-500 transition-colors">Products</a>
+              <a href="#contact" className="text-gray-700 hover:text-rose-500 transition-colors">Contact</a>
+            </div>
+            <button className="bg-gradient-to-r from-rose-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all transform hover:scale-105">
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-32 pb-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-block bg-rose-100 text-rose-600 px-4 py-2 rounded-full text-sm font-semibold">
+                🌱 Sustainable Fashion Movement
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+                Belanja <span className="bg-gradient-to-r from-rose-500 to-teal-500 bg-clip-text text-transparent">Preloved</span>,
+                <br />Selamatkan Bumi
+              </h1>
+              <p className="text-xl text-gray-600">
+                Temukan pakaian, buku, dan aksesoris berkualitas dengan harga terjangkau. 
+                Gaya hidup hemat yang ramah lingkungan untuk mahasiswa Indonesia.
+              </p>
+              <div className="flex gap-4">
+                <button className="bg-gradient-to-r from-rose-500 to-teal-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all transform hover:scale-105">
+                  Mulai Belanja
+                </button>
+                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-rose-500 hover:text-rose-500 transition-all">
+                  Jual Barangmu
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-300 to-teal-300 rounded-3xl blur-3xl opacity-30"></div>
+              <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
+                <div className="grid grid-cols-2 gap-4">
+                  {['🧥', '👗', '👜', '📚', '👕', '🕶️'].map((emoji, i) => (
+                    <div key={i} className="bg-gradient-to-br from-rose-50 to-teal-50 rounded-2xl p-8 text-6xl text-center hover:scale-110 transition-transform cursor-pointer">
+                      {emoji}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Kenapa PrelovedStory.id?</h2>
+            <p className="text-xl text-gray-600">Lebih dari sekadar belanja, ini adalah gaya hidup</p>
+          </div>
+          <div className="grid md:grid-cols-4 gap-8">
+            {features.map((feature, i) => (
+              <div key={i} className="text-center p-6 rounded-2xl hover:bg-gradient-to-br hover:from-rose-50 hover:to-teal-50 transition-all group">
+                <div className="inline-flex p-4 bg-gradient-to-r from-rose-500 to-teal-500 rounded-2xl text-white mb-4 group-hover:scale-110 transition-transform">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section id="products" className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Produk Pilihan</h2>
+            <p className="text-xl text-gray-600">Barang-barang unik menanti Anda</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {products.map((product, i) => (
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group">
+                <div className="h-48 bg-gradient-to-br from-rose-100 to-teal-100 flex items-center justify-center text-8xl group-hover:scale-110 transition-transform">
+                  {product.image}
+                </div>
+                <div className="p-6">
+                  <div className="inline-block bg-teal-100 text-teal-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                    {product.category}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+                  <div className="flex justify-between items-center">
+                    <span className="text-2xl font-bold text-rose-500">{product.price}</span>
+                    <button className="bg-gradient-to-r from-rose-500 to-teal-500 text-white p-3 rounded-full hover:shadow-lg transition-all">
+                      <Heart className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-6 bg-gradient-to-r from-rose-500 to-teal-500 text-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">Tentang Kami</h2>
+          <p className="text-xl leading-relaxed mb-8">
+            PrelovedStory.id adalah platform jual-beli barang preloved yang didirikan oleh mahasiswa 
+            untuk mahasiswa. Kami percaya bahwa fashion yang berkelanjutan bukan hanya tren, 
+            tapi adalah tanggung jawab kita bersama untuk masa depan bumi yang lebih baik.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6">
+              <Package className="w-12 h-12 mx-auto mb-4" />
+              <div className="text-3xl font-bold mb-2">500+</div>
+              <div className="text-lg">Produk Terjual</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6">
+              <Users className="w-12 h-12 mx-auto mb-4" />
+              <div className="text-3xl font-bold mb-2">200+</div>
+              <div className="text-lg">Pelanggan Puas</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6">
+              <Leaf className="w-12 h-12 mx-auto mb-4" />
+              <div className="text-3xl font-bold mb-2">100kg+</div>
+              <div className="text-lg">Limbah Teratasi</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">Hubungi Kami</h2>
+          <p className="text-xl text-gray-600 mb-12">
+            Punya pertanyaan atau ingin jual barang prelovedmu? Kami siap membantu!
+          </p>
+          <div className="flex justify-center gap-6">
+            <a href="#" className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all transform hover:scale-105">
+              <Instagram className="w-6 h-6" />
+              Instagram
+            </a>
+            <a href="#" className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-500 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all transform hover:scale-105">
+              <MessageCircle className="w-6 h-6" />
+              WhatsApp
+            </a>
+            <a href="#" className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all transform hover:scale-105">
+              <Facebook className="w-6 h-6" />
+              Facebook
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <ShoppingBag className="w-6 h-6 text-rose-500" />
+                <span className="text-xl font-bold">PrelovedStory.id</span>
+              </div>
+              <p className="text-gray-400">
+                Platform jual-beli preloved untuk gaya hidup berkelanjutan
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Menu</h4>
+              <div className="space-y-2">
+                <a href="#home" className="block text-gray-400 hover:text-white transition-colors">Home</a>
+                <a href="#about" className="block text-gray-400 hover:text-white transition-colors">About</a>
+                <a href="#products" className="block text-gray-400 hover:text-white transition-colors">Products</a>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Kategori</h4>
+              <div className="space-y-2">
+                <div className="text-gray-400">Fashion</div>
+                <div className="text-gray-400">Books</div>
+                <div className="text-gray-400">Accessories</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Follow Us</h4>
+              <div className="flex gap-4">
+                <Instagram className="w-6 h-6 text-gray-400 hover:text-pink-500 cursor-pointer transition-colors" />
+                <Facebook className="w-6 h-6 text-gray-400 hover:text-blue-500 cursor-pointer transition-colors" />
+                <MessageCircle className="w-6 h-6 text-gray-400 hover:text-green-500 cursor-pointer transition-colors" />
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 PrelovedStory.id by Muthiah Tsabitah Sujana. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
